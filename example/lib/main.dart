@@ -12,12 +12,12 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  MyAppDataModel _myAppDataModel;
+  MyAppDataModel? _myAppDataModel;
 
   @override
   void initState() {
     _myAppDataModel = MyAppDataModel();
-    _myAppDataModel.inputClickState.add([]);
+    _myAppDataModel!.inputClickState.add([]);
     super.initState();
   }
 
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               StreamBuilder<List<String>>(
                 initialData: [],
-                stream: _myAppDataModel.outputResult,
+                stream: _myAppDataModel!.outputResult,
                 builder: (context, snapshot) => Padding(
                   padding: EdgeInsets.only(
                     left: 8,
@@ -51,11 +51,11 @@ class _MyAppState extends State<MyApp> {
                     bottom: 24,
                   ),
                   child: snapshot.hasData
-                      ? snapshot.data.isNotEmpty
+                      ? snapshot.data!.isNotEmpty
                           ? ClipRRect(
                               borderRadius: BorderRadius.circular(24),
                               child: Image.file(
-                                File(snapshot.data[0]),
+                                File(snapshot.data![0]),
                                 fit: BoxFit.cover,
                                 width: MediaQuery.of(context).size.width * .75,
                                 height:
